@@ -8,52 +8,53 @@ namespace PortalAPI.DTO
     {
         public MembershipDTO Create(Membership personal)
         {
+            
             return new MembershipDTO()
             {
                 Id = personal.Id,
-                LastName = personal.LastName,
-                FirstName = personal.FirstName,
-                MiddleName = personal.MiddleName == null ? "" : personal.MiddleName,
+                LastName = personal.LastName ?? "",
+                FirstName = personal.FirstName ?? "",
+                MiddleName = personal.MiddleName ?? "",
                 BirthDate = (DateTime) personal.BirthDate,
-                BirthPlace = personal.BirthPlace == null ? "" : personal.BirthPlace,
-                Gender = personal.Gender == null ? "" : personal.Gender,
-                Citizenship = personal.Citizenship == null ? "" : personal.Citizenship,
-                CivilStatus = personal.CivilStatus == null ? "" : personal.CivilStatus ,
-                Religion = personal.Religion == null ? "" : personal.Religion,
-                EducAttainment = personal.EducAttainment == null ? "" : personal.EducAttainment,
-                Degree = personal.Degree == null ? "" : personal.Degree,
-                ContactNumber = personal.ContactNumber == null ? "" : personal.ContactNumber,
-                EmailAddress = personal.EmailAddress == null ? "" : personal.EmailAddress,
-                Occupation = personal.Occupation == null ? "" : personal.Occupation,
+                BirthPlace = personal.BirthPlace ?? "",
+                Gender = personal.Gender ?? "",
+                Citizenship = personal.Citizenship ?? "",
+                CivilStatus = personal.CivilStatus ?? "" ,
+                Religion = personal.Religion ?? "",
+                EducAttainment = personal.EducAttainment ?? "",
+                Degree = personal.Degree ?? "",
+                ContactNumber = personal.ContactNumber ?? "",
+                EmailAddress = personal.EmailAddress ?? "",
+                Occupation = personal.Occupation ?? "",
                 Height = personal.Height,
                 Weight = personal.Weight,
-                TIN = personal.TIN == null ? "" : personal.TIN,
-                SSS = personal.SSS == null ? "" : personal.SSS,
-                EmergencyContactPerson = personal.EmergencyContactPerson == null ? "" : personal.EmergencyContactPerson,
-                EmergencyContactNo = personal.EmergencyContactNo == null ? "" : personal.EmergencyContactNo,
-                ApplicationStage = personal.ApplicationStage == null ? "" : personal.ApplicationStage,
-                ApplicationStatus = personal.ApplicationStatus == null ? "" : personal.ApplicationStatus,
+                TIN = personal.TIN ?? "",
+                SSS = personal.SSS ?? "",
+                EmergencyContactPerson = personal.EmergencyContactPerson ?? "",
+                EmergencyContactNo = personal.EmergencyContactNo ?? "",
+                ApplicationStage = personal.ApplicationStage ?? "",
+                ApplicationStatus = personal.ApplicationStatus ?? "",
                 PMESDate = personal.PMESDate,
                 PMESType = personal.PMESType,
-                Remarks = personal.Remarks == null ? "" : personal.Remarks,
-                ApplicationName = personal.ApplicationName == null ? "" : personal.ApplicationName,
+                Remarks = personal.Remarks ?? "",
+                ApplicationName = personal.ApplicationName ?? "",
                 ApplicationContentType = personal.ApplicationContent == null ? "" : personal.ApplicationContentType,
                 ApplicationContent = personal.ApplicationContent,
-                MemberIDPictureName = personal.MemberIDPictureName == null ? "" : personal.MemberIDPictureName,
-                MemberIDPictureContentType = personal.MemberIDPictureContentType == null ? "" : personal.MemberIDPictureContentType,
+                MemberIDPictureName = personal.MemberIDPictureName ?? "",
+                MemberIDPictureContentType = personal.MemberIDPictureContentType ?? "",
                 MemberIDPictureContent = personal.MemberIDPictureContent,
                 MemberValidIdContent = personal.MemberIDPictureContent,
-                MemberValidIdName = personal.MemberValidIdName == null ? "" : personal.MemberValidIdName,
-                MemberValidIdContentType = personal.MemberValidIdContentType == null ? "" : personal.MemberValidIdContentType,
-                PaymentName = personal.PaymentName == null ? "" : personal.PaymentName,
-                PaymentContentType = personal.PaymentContentType == null ? "" : personal.PaymentContentType,
+                MemberValidIdName = personal.MemberValidIdName ?? "",
+                MemberValidIdContentType = personal.MemberValidIdContentType ?? "",
+                PaymentName = personal.PaymentName ?? "",
+                PaymentContentType = personal.PaymentContentType ?? "",
                 PaymentContent = personal.PaymentContent,
                 IsExists = personal.IsExists,
                 ApplicationDate = personal.ApplicationDate,
-                Address = personal.MemberAddresses == null ? null : personal.MemberAddresses.Select(a => Create(a)).ToList(),
-                Families = personal.MemberFamilies == null ? null : personal.MemberFamilies.Select(x => Create(x)).ToList(),
-                Dependent = personal.MemberDependents == null ? null : personal.MemberDependents.Select(d => Create(d)).ToList(),
-                Payment = personal.MembershipPayments == null ? null : personal.MembershipPayments.Select(m => Create(m)).ToList()
+                Address = personal.MemberAddresses?.Select(Create).ToList(),
+                Families = personal.MemberFamilies?.Select(Create).ToList(),
+                Dependent = personal.MemberDependents?.Select(Create).ToList(),
+                Payment = personal.MembershipPayments?.Select(Create).ToList()
             };
         }
 
@@ -63,9 +64,9 @@ namespace PortalAPI.DTO
             {
                 Id = personalDependent.Id,
                 MembershipID = personalDependent.MembershipID,
-                Name = personalDependent.Name,
+                Name = personalDependent.Name ?? "",
                 BirthDate = personalDependent.BirthDate,
-                EducAttainment = personalDependent.EducAttainment
+                EducAttainment = personalDependent.EducAttainment ?? ""
             };
         }
         public MemberAddressDTO Create(MemberAddress personalAddres)
@@ -74,19 +75,19 @@ namespace PortalAPI.DTO
             {
                 Id = personalAddres.Id,
                 MembershipID = personalAddres.MembershipID,
-                ProvCode = personalAddres.ProvCode,
-                CityMunCode = personalAddres.CityMunCode,
-                BrgyCode = personalAddres.BrgyCode,
-                Zipcode = personalAddres.Zipcode,
-                BuildingName = personalAddres.BuildingName,
-                Street = personalAddres.Street,
-                IsOwned = personalAddres.IsOwned == null ? false : personalAddres.IsOwned,
-                IsRent = personalAddres.IsRent == null ? false : personalAddres.IsRent,
-                NumberofRentYear = personalAddres.NumberofRentYear == null ? 0 : personalAddres.NumberofRentYear,
-                IsLivingwParent = personalAddres.IsLivingwParent == null ? false : personalAddres.IsLivingwParent,
-                IsOther = personalAddres.IsOther == null ? false : personalAddres.IsOther,
-                Other = personalAddres.Other,
-                AddressType = personalAddres.AddressType
+                ProvCode = personalAddres.ProvCode ?? "",
+                CityMunCode = personalAddres.CityMunCode ?? "",
+                BrgyCode = personalAddres.BrgyCode ?? "",
+                Zipcode = personalAddres.Zipcode ?? "",
+                BuildingName = personalAddres.BuildingName ?? "",
+                Street = personalAddres.Street ?? "",
+                IsOwned = personalAddres.IsOwned ?? false,
+                IsRent = personalAddres.IsRent ?? false,
+                NumberofRentYear = personalAddres.NumberofRentYear ?? 0,
+                IsLivingwParent = personalAddres.IsLivingwParent ?? false,
+                IsOther = personalAddres.IsOther ?? false,
+                Other = personalAddres.Other ?? "",
+                AddressType = personalAddres.AddressType ?? ""
             };
         }
         public MemberFamilyDTO Create(MemberFamily personalFamily)
@@ -95,11 +96,11 @@ namespace PortalAPI.DTO
             {
                 Id = personalFamily.Id,
                 MembershipID = personalFamily.MembershipID,
-                Name = personalFamily.Name,
+                Name = personalFamily.Name ?? "",
                 BirthDate = personalFamily.BirthDate,
-                ContactNumber = personalFamily.ContactNumber,
-                Address = personalFamily.Address,
-                Relationship = personalFamily.Relationship
+                ContactNumber = personalFamily.ContactNumber ?? "",
+                Address = personalFamily.Address ?? "",
+                Relationship = personalFamily.Relationship ?? ""
             };
         }
 
@@ -109,11 +110,11 @@ namespace PortalAPI.DTO
             {
                 Id = membership.Id,
                 MembershipID = membership.MembershipID,
-                Description = membership.Description,
+                Description = membership.Description ?? "",
                 Amount = membership.Amount,
                 IsShareCapital = membership.IsShareCapital,
                 ShareCapitalParameter = membership.ShareCapitalParameter,
-                Remarks =  membership.Remarks
+                Remarks =  membership.Remarks ?? ""
             };
         }
     }

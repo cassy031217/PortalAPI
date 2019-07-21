@@ -242,7 +242,7 @@ namespace PortalAPI.Controllers
         [HttpPost]
         [Route("api/CIFOnlineUser")]
         [ResponseType(typeof(CIFOnlineUserDTO))]
-        [Authorize]
+        //[Authorize]
         public IHttpActionResult PostCIFOnlineUser([FromBody] CIFOnlineUserDTO cifOnlineUserDto)
         {
             if (!ModelState.IsValid)
