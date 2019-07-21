@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="b108f7dd4c3647ada78eddabcf538665" Name="Diagram1">
+        <EntityTypeShape EntityType="Portal_DBModel.Barangay" Width="1.5" PointX="11.625" PointY="14.625" IsExpanded="false" />
+        <EntityTypeShape EntityType="Portal_DBModel.CityMunicipality" Width="1.5" PointX="11.75" PointY="15.25" IsExpanded="false" />
+        <EntityTypeShape EntityType="Portal_DBModel.LoanApplication" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="false" />
+        <EntityTypeShape EntityType="Portal_DBModel.MembershipPaymentFee" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="false" />
+        <EntityTypeShape EntityType="Portal_DBModel.Province" Width="1.5" PointX="11.75" PointY="15.875" IsExpanded="false" />
+        <EntityTypeShape EntityType="Portal_DBModel.Region" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="false" />
+        <EntityTypeShape EntityType="Portal_DBModel.CIFOnlineUser" Width="1.5" PointX="2.375" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Portal_DBModel.CasaAccount" Width="1.5" PointX="8.25" PointY="10.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Portal_DBModel.CasaLedger" Width="1.5" PointX="7.75" PointY="2.75" IsExpanded="false" />
+        <EntityTypeShape EntityType="Portal_DBModel.CasaProduct" Width="1.5" PointX="6.25" PointY="10.625" />
+        <EntityTypeShape EntityType="Portal_DBModel.LoanAccount" Width="1.5" PointX="10.875" PointY="1.125" />
+        <EntityTypeShape EntityType="Portal_DBModel.LoanProductsMaster" Width="1.5" PointX="9" PointY="1.625" IsExpanded="false" />
+        <EntityTypeShape EntityType="Portal_DBModel.rptsrc_StatementofAccountLoans" Width="1.5" PointX="15.25" PointY="1.125" />
+        <AssociationConnector Association="Portal_DBModel.FK_CasaAccount_CasaProducts" />
+        <AssociationConnector Association="Portal_DBModel.FK_LoanAccount_LoanProductsMaster" />
+        <AssociationConnector Association="Portal_DBModel.FK_rptsrc_StatementofAccountLoans_LoanAccount" />
+        <EntityTypeShape EntityType="Portal_DBModel.rptsrc_StatementofAccountSavings" Width="1.5" PointX="10.625" PointY="9" IsExpanded="false" />
+        <EntityTypeShape EntityType="Portal_DBModel.MemberAddress" Width="1.5" PointX="9.5" PointY="15.5" IsExpanded="false" />
+        <EntityTypeShape EntityType="Portal_DBModel.MemberDependent" Width="1.5" PointX="7.625" PointY="17.625" IsExpanded="false" />
+        <EntityTypeShape EntityType="Portal_DBModel.MemberFamily" Width="1.5" PointX="6.75" PointY="20.25" IsExpanded="false" />
+        <EntityTypeShape EntityType="Portal_DBModel.Membership" Width="2.375" PointX="9" PointY="18.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Portal_DBModel.MembershipPayment" Width="1.5" PointX="4.625" PointY="18.375" IsExpanded="true" />
+        <AssociationConnector Association="Portal_DBModel.FK_MemberAddress_Barangay" ManuallyRouted="true" >
+          <ConnectorPoint PointX="13.125" PointY="14.667728904847397" />
+          <ConnectorPoint PointX="13.5" PointY="14.667728904847397" />
+          <ConnectorPoint PointX="13.5" PointY="14.25" />
+          <ConnectorPoint PointX="10.25" PointY="14.25" />
+          <ConnectorPoint PointX="10.25" PointY="15.5" />
+        </AssociationConnector>
+        <AssociationConnector Association="Portal_DBModel.FK_MemberAddress_CityMunicipalities" />
+        <AssociationConnector Association="Portal_DBModel.FK_MemberAddress_Membership" />
+        <AssociationConnector Association="Portal_DBModel.FK_MemberAddress_Provinces1" />
+        <AssociationConnector Association="Portal_DBModel.FK_MemberDependents_Membership" />
+        <AssociationConnector Association="Portal_DBModel.FK_MemberFamilies_Membership" />
+        <AssociationConnector Association="Portal_DBModel.FK_MembershipPayments_Membership" />
+        <EntityTypeShape EntityType="Portal_DBModel.LoanLedger" Width="1.5" PointX="13.125" PointY="5.125" />
+        <AssociationConnector Association="Portal_DBModel.FK_LoanLedger_LoanAccount" />
+        </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

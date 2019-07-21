@@ -1,0 +1,1594 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Portal_DBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Barangay">
+          <Key>
+            <PropertyRef Name="brgyCode" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="255" />
+          <Property Name="citymunCode" Type="varchar" MaxLength="50" />
+          <Property Name="brgyCode" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CasaAccount">
+          <Key>
+            <PropertyRef Name="BranchCode" />
+            <PropertyRef Name="GroupCode" />
+            <PropertyRef Name="AccountNumber" />
+            <PropertyRef Name="CIFkey" />
+          </Key>
+          <Property Name="BranchCode" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="GroupCode" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="AccountNumber" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CIFkey" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="AccountName" Type="varchar" MaxLength="255" />
+          <Property Name="TypeOfAccount" Type="varchar" MaxLength="50" />
+          <Property Name="AccountStatus" Type="varchar" MaxLength="50" />
+          <Property Name="ProductCode" Type="varchar" MaxLength="20" />
+          <Property Name="DateOpen" Type="datetime" />
+          <Property Name="DateClosed" Type="datetime" />
+          <Property Name="PassbookNumber" Type="varchar" MaxLength="50" />
+          <Property Name="AccountBalance" Type="money" />
+          <Property Name="BeginningBalance" Type="money" />
+          <Property Name="HoldBalance" Type="money" />
+          <Property Name="MaturityDate" Type="datetime" />
+          <Property Name="Principal" Type="money" />
+          <Property Name="Terms" Type="int" />
+          <Property Name="InterestRate" Type="float" />
+        </EntityType>
+        <EntityType Name="CasaLedger">
+          <Key>
+            <PropertyRef Name="BranchCode" />
+            <PropertyRef Name="GroupCode" />
+            <PropertyRef Name="AccountNumber" />
+            <PropertyRef Name="TransactionDate" />
+            <PropertyRef Name="SequenceNumber" />
+          </Key>
+          <Property Name="BranchCode" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="GroupCode" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="AccountNumber" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="TransactionDate" Type="datetime" Nullable="false" />
+          <Property Name="SequenceNumber" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="ReferenceNumber" Type="varchar" MaxLength="10" />
+          <Property Name="Description" Type="varchar" MaxLength="255" />
+          <Property Name="Mnemonic" Type="varchar" MaxLength="10" />
+          <Property Name="BeginningBalance" Type="money" />
+          <Property Name="Debit" Type="money" />
+          <Property Name="Credit" Type="money" />
+          <Property Name="EndingBalance" Type="money" />
+        </EntityType>
+        <EntityType Name="CasaProducts">
+          <Key>
+            <PropertyRef Name="ProductCode" />
+          </Key>
+          <Property Name="ProductCode" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="TypeOfAccount" Type="varchar" MaxLength="20" />
+          <Property Name="Description" Type="varchar" MaxLength="50" />
+          <Property Name="MinimumDeposit" Type="money" />
+          <Property Name="MinimumBalance" Type="money" />
+          <Property Name="HoldAmount" Type="money" />
+          <Property Name="Divisor" Type="money" />
+          <Property Name="TaxFactor" Type="money" />
+          <Property Name="ComputeFrequency" Type="varchar" MaxLength="50" />
+          <Property Name="ServiceChargeActive" Type="money" />
+          <Property Name="ServiceChargeDormant" Type="money" />
+          <Property Name="DaysDormant" Type="int" />
+          <Property Name="Terms" Type="int" />
+        </EntityType>
+        <EntityType Name="CIFOnlineUsers">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="FirstName" Type="nvarchar" MaxLength="500" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="500" />
+          <Property Name="MiddleName" Type="char" MaxLength="10" />
+          <Property Name="Birthdate" Type="datetime" />
+          <Property Name="Sex" Type="nchar" MaxLength="10" />
+          <Property Name="EmailAddress" Type="nvarchar" MaxLength="500" />
+          <Property Name="ConfirmedEmail" Type="bit" />
+          <Property Name="Username" Type="nvarchar" MaxLength="500" />
+          <Property Name="Password" Type="nvarchar" MaxLength="500" />
+          <Property Name="BranchCode" Type="nvarchar" MaxLength="500" />
+          <Property Name="IsGlobalAdministrator" Type="bit" />
+          <Property Name="LastLoginDate" Type="datetime" />
+          <Property Name="CreationDate" Type="datetime" />
+          <Property Name="IsOnLine" Type="bit" />
+          <Property Name="AccountName" Type="nvarchar" MaxLength="500" />
+          <Property Name="GUID" Type="uniqueidentifier" />
+          <Property Name="AccountStatus" Type="nvarchar" MaxLength="20" />
+          <Property Name="ActivationCode" Type="uniqueidentifier" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CIFkey" Type="nvarchar" MaxLength="50" />
+          <Property Name="EmailTagging" Type="bit" />
+        </EntityType>
+        <EntityType Name="CityMunicipalities">
+          <Key>
+            <PropertyRef Name="citymunCode" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="psgcCode" Type="varchar" MaxLength="100" />
+          <Property Name="Description" Type="varchar" MaxLength="255" />
+          <Property Name="provCode" Type="varchar" MaxLength="50" />
+          <Property Name="citymunCode" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="LoanAccount">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="CIFKey" Type="varchar" MaxLength="50" />
+          <Property Name="BranchCode" Type="varchar" MaxLength="15" />
+          <Property Name="GroupCode" Type="varchar" MaxLength="10" />
+          <Property Name="AccountNumber" Type="varchar" MaxLength="50" />
+          <Property Name="AccountName" Type="varchar" MaxLength="255" />
+          <Property Name="ProductCode" Type="varchar" MaxLength="20" />
+          <Property Name="LoanAmount" Type="money" />
+          <Property Name="PrincipalBalance" Type="money" />
+          <Property Name="InterestBalance" Type="money" />
+          <Property Name="ReleaseDate" Type="datetime" />
+          <Property Name="MaturityDate" Type="datetime" />
+          <Property Name="AccountStatus" Type="varchar" MaxLength="30" />
+          <Property Name="ModeOfPayment" Type="varchar" MaxLength="15" />
+          <Property Name="FrequencyOfPayment" Type="varchar" MaxLength="50" />
+          <Property Name="NumberOfPayments" Type="int" />
+          <Property Name="InterestRate" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="InterestMOP" Type="varchar" MaxLength="15" />
+          <Property Name="InterestFrequency" Type="varchar" MaxLength="50" />
+          <Property Name="InterestComputationMethod" Type="varchar" MaxLength="15" />
+          <Property Name="InterestComputationFrequency" Type="varchar" MaxLength="10" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="LoanApplication">
+          <Key>
+            <PropertyRef Name="LAno" />
+          </Key>
+          <Property Name="LAno" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MemberCode" Type="varchar" MaxLength="30" />
+          <Property Name="AppliedAmount" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="LoanAmount" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="ApplicationDate" Type="datetime" />
+          <Property Name="Product" Type="varchar" MaxLength="100" />
+          <Property Name="TermsQty" Type="int" />
+          <Property Name="ApplicationFormPath" Type="varchar" MaxLength="500" />
+          <Property Name="File1Path" Type="varchar" MaxLength="500" />
+          <Property Name="File2Path" Type="varchar" MaxLength="500" />
+          <Property Name="File3Path" Type="varchar" MaxLength="500" />
+          <Property Name="File4Path" Type="varchar" MaxLength="500" />
+          <Property Name="File5Path" Type="varchar" MaxLength="500" />
+          <Property Name="VerificationStatus" Type="varchar" MaxLength="20" />
+          <Property Name="VerificationRemarks" Type="varchar" MaxLength="500" />
+          <Property Name="DateVerified" Type="datetime" />
+          <Property Name="EvaluationStatus" Type="varchar" MaxLength="20" />
+          <Property Name="DateEvaluated" Type="datetime" />
+          <Property Name="IsChangeLoanAmount" Type="bit" />
+          <Property Name="IsChangeTerm" Type="bit" />
+          <Property Name="IsAddRequirement" Type="bit" />
+          <Property Name="IsAgreeToCondition" Type="bit" />
+          <Property Name="ClientEvalRemarks" Type="varchar" MaxLength="500" />
+          <Property Name="EvaluatorRemarks" Type="varchar" MaxLength="500" />
+          <Property Name="ApprovalStatus" Type="varchar" MaxLength="20" />
+          <Property Name="DateApproved" Type="datetime" />
+          <Property Name="ApproverRemarks" Type="varchar" MaxLength="500" />
+          <Property Name="AddedReqPath1" Type="varchar" MaxLength="500" />
+          <Property Name="AddedReqPath2" Type="varchar" MaxLength="500" />
+          <Property Name="AddedReqPath3" Type="varchar" MaxLength="500" />
+          <Property Name="ReleaseDate" Type="datetime" />
+          <Property Name="ReleaseRemarks" Type="varchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="LoanLedger">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="LoanAccountId" Type="int" />
+          <Property Name="TransactionDate" Type="datetime" />
+          <Property Name="ReferenceNumber" Type="varchar" MaxLength="50" />
+          <Property Name="TransactionType" Type="varchar" MaxLength="10" />
+          <Property Name="Description" Type="varchar" MaxLength="255" />
+          <Property Name="PrincipalBeginning" Type="nchar" MaxLength="10" />
+          <Property Name="Principal" Type="money" />
+          <Property Name="PrincipalEnding" Type="money" />
+          <Property Name="InterestBeginning" Type="nchar" MaxLength="10" />
+          <Property Name="Interest" Type="money" />
+          <Property Name="InterestEnding" Type="money" />
+          <Property Name="Penalty" Type="money" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="LoanProductsMaster">
+          <Key>
+            <PropertyRef Name="ProductCode" />
+          </Key>
+          <Property Name="ProductId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProductCode" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="ProductName" Type="varchar" MaxLength="200" />
+          <Property Name="ModeOfPayment" Type="varchar" MaxLength="15" />
+          <Property Name="FrequencyOfPayment" Type="varchar" MaxLength="15" />
+          <Property Name="NumberOfPayments" Type="int" />
+          <Property Name="InterestRate" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="InterestModeofPayment" Type="varchar" MaxLength="15" />
+          <Property Name="InterestComputationMethod" Type="varchar" MaxLength="15" />
+          <Property Name="InterestFrequency" Type="varchar" MaxLength="15" />
+          <Property Name="InterestComputationFrequency" Type="varchar" MaxLength="15" />
+          <Property Name="AdvancedInterest" Type="int" />
+        </EntityType>
+        <EntityType Name="MemberAddress">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MembershipID" Type="int" Nullable="false" />
+          <Property Name="ProvCode" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CityMunCode" Type="varchar" MaxLength="50" />
+          <Property Name="BrgyCode" Type="varchar" MaxLength="50" />
+          <Property Name="Zipcode" Type="varchar" MaxLength="50" />
+          <Property Name="BuildingName" Type="varchar" MaxLength="250" />
+          <Property Name="Street" Type="varchar" MaxLength="250" />
+          <Property Name="IsOwned" Type="bit" />
+          <Property Name="IsRent" Type="bit" />
+          <Property Name="NumberofRentYear" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="IsLivingwParent" Type="bit" />
+          <Property Name="IsOther" Type="bit" />
+          <Property Name="Other" Type="varchar" MaxLength="250" />
+          <Property Name="AddressType" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="MemberDependents">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MembershipID" Type="int" />
+          <Property Name="Name" Type="varchar" MaxLength="250" />
+          <Property Name="BirthDate" Type="date" />
+          <Property Name="EducAttainment" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="MemberFamilies">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MembershipID" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="250" />
+          <Property Name="BirthDate" Type="date" />
+          <Property Name="ContactNumber" Type="varchar" MaxLength="20" />
+          <Property Name="Address" Type="varchar" MaxLength="255" />
+          <Property Name="Relationship" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Membership">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LastName" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="FirstName" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="MiddleName" Type="varchar" MaxLength="255" />
+          <Property Name="BirthDate" Type="date" />
+          <Property Name="BirthPlace" Type="varchar" MaxLength="255" />
+          <Property Name="Gender" Type="varchar" MaxLength="10" />
+          <Property Name="Citizenship" Type="varchar" MaxLength="50" />
+          <Property Name="CivilStatus" Type="varchar" MaxLength="50" />
+          <Property Name="Religion" Type="varchar" MaxLength="50" />
+          <Property Name="EducAttainment" Type="varchar" MaxLength="255" />
+          <Property Name="Degree" Type="varchar" MaxLength="255" />
+          <Property Name="ContactNumber" Type="varchar" MaxLength="20" />
+          <Property Name="EmailAddress" Type="varchar" MaxLength="50" />
+          <Property Name="Occupation" Type="varchar" MaxLength="50" />
+          <Property Name="Height" Type="numeric" Precision="18" Scale="3" />
+          <Property Name="Weight" Type="numeric" Precision="18" Scale="3" />
+          <Property Name="TIN" Type="varchar" MaxLength="50" />
+          <Property Name="SSS" Type="varchar" MaxLength="50" />
+          <Property Name="EmergencyContactPerson" Type="varchar" MaxLength="250" />
+          <Property Name="EmergencyContactNo" Type="varchar" MaxLength="20" />
+          <Property Name="ApplicationStage" Type="varchar" MaxLength="50" />
+          <Property Name="ApplicationStatus" Type="varchar" MaxLength="50" />
+          <Property Name="ApplicationDate" Type="date" />
+          <Property Name="PMESDate" Type="date" />
+          <Property Name="PMESType" Type="bit" />
+          <Property Name="Remarks" Type="varchar" MaxLength="500" />
+          <Property Name="ApplicationName" Type="varchar" MaxLength="100" />
+          <Property Name="ApplicationContentType" Type="varchar" MaxLength="50" />
+          <Property Name="ApplicationContent" Type="varbinary(max)" />
+          <Property Name="MemberIDPictureName" Type="varchar" MaxLength="100" />
+          <Property Name="MemberIDPictureContentType" Type="varchar" MaxLength="50" />
+          <Property Name="MemberIDPictureContent" Type="varbinary(max)" />
+          <Property Name="MemberValidIdName" Type="varchar" MaxLength="100" />
+          <Property Name="MemberValidIdContentType" Type="varchar" MaxLength="50" />
+          <Property Name="MemberValidIdContent" Type="varbinary(max)" />
+          <Property Name="PaymentName" Type="varchar" MaxLength="100" />
+          <Property Name="PaymentContentType" Type="varchar" MaxLength="50" />
+          <Property Name="PaymentContent" Type="varbinary(max)" />
+          <Property Name="IsExists" Type="bit" />
+        </EntityType>
+        <EntityType Name="MembershipPaymentFee">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="255" />
+          <Property Name="Amount" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Remarks" Type="varchar" MaxLength="500" />
+          <Property Name="IsShareCapital" Type="bit" />
+          <Property Name="ShareCapitalParameter" Type="decimal" Precision="18" Scale="2" />
+        </EntityType>
+        <EntityType Name="MembershipPayments">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MembershipID" Type="int" />
+          <Property Name="Description" Type="varchar" MaxLength="255" />
+          <Property Name="Amount" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="IsShareCapital" Type="bit" />
+          <Property Name="ShareCapitalParameter" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Remarks" Type="varchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="Provinces">
+          <Key>
+            <PropertyRef Name="provCode" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="psgcCode" Type="varchar" MaxLength="100" />
+          <Property Name="Description" Type="varchar" MaxLength="255" />
+          <Property Name="regCode" Type="varchar" MaxLength="50" />
+          <Property Name="provCode" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Regions">
+          <Key>
+            <PropertyRef Name="regCode" />
+          </Key>
+          <Property Name="psgcCode" Type="varchar" MaxLength="100" />
+          <Property Name="shortname" Type="varchar" MaxLength="100" />
+          <Property Name="Description" Type="varchar" MaxLength="255" />
+          <Property Name="regCode" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="rptsrc_StatementofAccountLoans">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="LoanAccountId" Type="int" />
+          <Property Name="TransactionDate" Type="datetime" />
+          <Property Name="LoanDue" Type="varchar" MaxLength="50" />
+          <Property Name="PrincipalDue" Type="money" />
+          <Property Name="InterestDue" Type="money" />
+          <Property Name="PenaltyDue" Type="money" />
+        </EntityType>
+        <EntityType Name="rptsrc_StatementofAccountSavings">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BranchCode" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="GroupCode" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="AccountNumber" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="AccountType" Type="nchar" MaxLength="10" />
+          <Property Name="TransactionDate" Type="datetime" />
+          <Property Name="BeginningBalance" Type="money" />
+          <Property Name="CashDeposits" Type="money" />
+          <Property Name="CheckDeposits" Type="money" />
+          <Property Name="CreditMemo" Type="money" />
+          <Property Name="Interest" Type="money" />
+          <Property Name="LoanDeduction" Type="money" />
+          <Property Name="SavingsCollection" Type="money" />
+          <Property Name="CashWithdrawal" Type="money" />
+          <Property Name="CheckWithdrawal" Type="money" />
+          <Property Name="DebitMemo" Type="money" />
+          <Property Name="ChargeBelowMinBal" Type="money" />
+          <Property Name="ChargeonDormancy" Type="money" />
+          <Property Name="LoanOffsetting" Type="money" />
+          <Property Name="EndingBalance" Type="money" />
+        </EntityType>
+        <Association Name="FK_CasaAccount_CasaProducts">
+          <End Role="CasaProducts" Type="Self.CasaProducts" Multiplicity="0..1" />
+          <End Role="CasaAccount" Type="Self.CasaAccount" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CasaProducts">
+              <PropertyRef Name="ProductCode" />
+            </Principal>
+            <Dependent Role="CasaAccount">
+              <PropertyRef Name="ProductCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LoanAccount_LoanProductsMaster">
+          <End Role="LoanProductsMaster" Type="Self.LoanProductsMaster" Multiplicity="0..1" />
+          <End Role="LoanAccount" Type="Self.LoanAccount" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LoanProductsMaster">
+              <PropertyRef Name="ProductCode" />
+            </Principal>
+            <Dependent Role="LoanAccount">
+              <PropertyRef Name="ProductCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LoanLedger_LoanAccount">
+          <End Role="LoanAccount" Type="Self.LoanAccount" Multiplicity="0..1" />
+          <End Role="LoanLedger" Type="Self.LoanLedger" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LoanAccount">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="LoanLedger">
+              <PropertyRef Name="LoanAccountId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MemberAddress_Barangay">
+          <End Role="Barangay" Type="Self.Barangay" Multiplicity="0..1" />
+          <End Role="MemberAddress" Type="Self.MemberAddress" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Barangay">
+              <PropertyRef Name="brgyCode" />
+            </Principal>
+            <Dependent Role="MemberAddress">
+              <PropertyRef Name="BrgyCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MemberAddress_CityMunicipalities">
+          <End Role="CityMunicipalities" Type="Self.CityMunicipalities" Multiplicity="0..1" />
+          <End Role="MemberAddress" Type="Self.MemberAddress" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CityMunicipalities">
+              <PropertyRef Name="citymunCode" />
+            </Principal>
+            <Dependent Role="MemberAddress">
+              <PropertyRef Name="CityMunCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MemberAddress_Membership">
+          <End Role="Membership" Type="Self.Membership" Multiplicity="1" />
+          <End Role="MemberAddress" Type="Self.MemberAddress" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Membership">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MemberAddress">
+              <PropertyRef Name="MembershipID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MemberAddress_Provinces1">
+          <End Role="Provinces" Type="Self.Provinces" Multiplicity="1" />
+          <End Role="MemberAddress" Type="Self.MemberAddress" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Provinces">
+              <PropertyRef Name="provCode" />
+            </Principal>
+            <Dependent Role="MemberAddress">
+              <PropertyRef Name="ProvCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MemberDependents_Membership">
+          <End Role="Membership" Type="Self.Membership" Multiplicity="0..1" />
+          <End Role="MemberDependents" Type="Self.MemberDependents" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Membership">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MemberDependents">
+              <PropertyRef Name="MembershipID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MemberFamilies_Membership">
+          <End Role="Membership" Type="Self.Membership" Multiplicity="1" />
+          <End Role="MemberFamilies" Type="Self.MemberFamilies" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Membership">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MemberFamilies">
+              <PropertyRef Name="MembershipID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MembershipPayments_Membership">
+          <End Role="Membership" Type="Self.Membership" Multiplicity="0..1" />
+          <End Role="MembershipPayments" Type="Self.MembershipPayments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Membership">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MembershipPayments">
+              <PropertyRef Name="MembershipID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_rptsrc_StatementofAccountLoans_LoanAccount">
+          <End Role="LoanAccount" Type="Self.LoanAccount" Multiplicity="0..1" />
+          <End Role="rptsrc_StatementofAccountLoans" Type="Self.rptsrc_StatementofAccountLoans" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LoanAccount">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="rptsrc_StatementofAccountLoans">
+              <PropertyRef Name="LoanAccountId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Portal_DBModelStoreContainer">
+          <EntitySet Name="Barangay" EntityType="Self.Barangay" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CasaAccount" EntityType="Self.CasaAccount" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CasaLedger" EntityType="Self.CasaLedger" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CasaProducts" EntityType="Self.CasaProducts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CIFOnlineUsers" EntityType="Self.CIFOnlineUsers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CityMunicipalities" EntityType="Self.CityMunicipalities" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LoanAccount" EntityType="Self.LoanAccount" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LoanApplication" EntityType="Self.LoanApplication" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LoanLedger" EntityType="Self.LoanLedger" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LoanProductsMaster" EntityType="Self.LoanProductsMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MemberAddress" EntityType="Self.MemberAddress" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MemberDependents" EntityType="Self.MemberDependents" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MemberFamilies" EntityType="Self.MemberFamilies" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Membership" EntityType="Self.Membership" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MembershipPaymentFee" EntityType="Self.MembershipPaymentFee" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MembershipPayments" EntityType="Self.MembershipPayments" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Provinces" EntityType="Self.Provinces" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Regions" EntityType="Self.Regions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="rptsrc_StatementofAccountLoans" EntityType="Self.rptsrc_StatementofAccountLoans" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="rptsrc_StatementofAccountSavings" EntityType="Self.rptsrc_StatementofAccountSavings" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_CasaAccount_CasaProducts" Association="Self.FK_CasaAccount_CasaProducts">
+            <End Role="CasaProducts" EntitySet="CasaProducts" />
+            <End Role="CasaAccount" EntitySet="CasaAccount" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LoanAccount_LoanProductsMaster" Association="Self.FK_LoanAccount_LoanProductsMaster">
+            <End Role="LoanProductsMaster" EntitySet="LoanProductsMaster" />
+            <End Role="LoanAccount" EntitySet="LoanAccount" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LoanLedger_LoanAccount" Association="Self.FK_LoanLedger_LoanAccount">
+            <End Role="LoanAccount" EntitySet="LoanAccount" />
+            <End Role="LoanLedger" EntitySet="LoanLedger" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MemberAddress_Barangay" Association="Self.FK_MemberAddress_Barangay">
+            <End Role="Barangay" EntitySet="Barangay" />
+            <End Role="MemberAddress" EntitySet="MemberAddress" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MemberAddress_CityMunicipalities" Association="Self.FK_MemberAddress_CityMunicipalities">
+            <End Role="CityMunicipalities" EntitySet="CityMunicipalities" />
+            <End Role="MemberAddress" EntitySet="MemberAddress" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MemberAddress_Membership" Association="Self.FK_MemberAddress_Membership">
+            <End Role="Membership" EntitySet="Membership" />
+            <End Role="MemberAddress" EntitySet="MemberAddress" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MemberAddress_Provinces1" Association="Self.FK_MemberAddress_Provinces1">
+            <End Role="Provinces" EntitySet="Provinces" />
+            <End Role="MemberAddress" EntitySet="MemberAddress" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MemberDependents_Membership" Association="Self.FK_MemberDependents_Membership">
+            <End Role="Membership" EntitySet="Membership" />
+            <End Role="MemberDependents" EntitySet="MemberDependents" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MemberFamilies_Membership" Association="Self.FK_MemberFamilies_Membership">
+            <End Role="Membership" EntitySet="Membership" />
+            <End Role="MemberFamilies" EntitySet="MemberFamilies" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MembershipPayments_Membership" Association="Self.FK_MembershipPayments_Membership">
+            <End Role="Membership" EntitySet="Membership" />
+            <End Role="MembershipPayments" EntitySet="MembershipPayments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_rptsrc_StatementofAccountLoans_LoanAccount" Association="Self.FK_rptsrc_StatementofAccountLoans_LoanAccount">
+            <End Role="LoanAccount" EntitySet="LoanAccount" />
+            <End Role="rptsrc_StatementofAccountLoans" EntitySet="rptsrc_StatementofAccountLoans" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Portal_DBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="Portal_DBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Barangays" EntityType="Portal_DBModel.Barangay" />
+          <EntitySet Name="CityMunicipalities" EntityType="Portal_DBModel.CityMunicipality" />
+          <EntitySet Name="LoanApplications" EntityType="Portal_DBModel.LoanApplication" />
+          <EntitySet Name="MembershipPaymentFees" EntityType="Portal_DBModel.MembershipPaymentFee" />
+          <EntitySet Name="Provinces" EntityType="Portal_DBModel.Province" />
+          <EntitySet Name="Regions" EntityType="Portal_DBModel.Region" />
+          <EntitySet Name="CIFOnlineUsers" EntityType="Portal_DBModel.CIFOnlineUser" />
+          <EntitySet Name="CasaAccounts" EntityType="Portal_DBModel.CasaAccount" />
+          <EntitySet Name="CasaLedgers" EntityType="Portal_DBModel.CasaLedger" />
+          <EntitySet Name="CasaProducts" EntityType="Portal_DBModel.CasaProduct" />
+          <EntitySet Name="LoanAccounts" EntityType="Portal_DBModel.LoanAccount" />
+          <EntitySet Name="LoanProductsMasters" EntityType="Portal_DBModel.LoanProductsMaster" />
+          <EntitySet Name="rptsrc_StatementofAccountLoans" EntityType="Portal_DBModel.rptsrc_StatementofAccountLoans" />
+          <AssociationSet Name="FK_CasaAccount_CasaProducts" Association="Portal_DBModel.FK_CasaAccount_CasaProducts">
+            <End Role="CasaProduct" EntitySet="CasaProducts" />
+            <End Role="CasaAccount" EntitySet="CasaAccounts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LoanAccount_LoanProductsMaster" Association="Portal_DBModel.FK_LoanAccount_LoanProductsMaster">
+            <End Role="LoanProductsMaster" EntitySet="LoanProductsMasters" />
+            <End Role="LoanAccount" EntitySet="LoanAccounts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_rptsrc_StatementofAccountLoans_LoanAccount" Association="Portal_DBModel.FK_rptsrc_StatementofAccountLoans_LoanAccount">
+            <End Role="LoanAccount" EntitySet="LoanAccounts" />
+            <End Role="rptsrc_StatementofAccountLoans" EntitySet="rptsrc_StatementofAccountLoans" />
+          </AssociationSet>
+          <EntitySet Name="rptsrc_StatementofAccountSavings" EntityType="Portal_DBModel.rptsrc_StatementofAccountSavings" />
+          <EntitySet Name="MemberAddresses" EntityType="Portal_DBModel.MemberAddress" />
+          <EntitySet Name="MemberDependents" EntityType="Portal_DBModel.MemberDependent" />
+          <EntitySet Name="MemberFamilies" EntityType="Portal_DBModel.MemberFamily" />
+          <EntitySet Name="Memberships" EntityType="Portal_DBModel.Membership" />
+          <EntitySet Name="MembershipPayments" EntityType="Portal_DBModel.MembershipPayment" />
+          <AssociationSet Name="FK_MemberAddress_Barangay" Association="Portal_DBModel.FK_MemberAddress_Barangay">
+            <End Role="Barangay" EntitySet="Barangays" />
+            <End Role="MemberAddress" EntitySet="MemberAddresses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MemberAddress_CityMunicipalities" Association="Portal_DBModel.FK_MemberAddress_CityMunicipalities">
+            <End Role="CityMunicipality" EntitySet="CityMunicipalities" />
+            <End Role="MemberAddress" EntitySet="MemberAddresses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MemberAddress_Membership" Association="Portal_DBModel.FK_MemberAddress_Membership">
+            <End Role="Membership" EntitySet="Memberships" />
+            <End Role="MemberAddress" EntitySet="MemberAddresses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MemberAddress_Provinces1" Association="Portal_DBModel.FK_MemberAddress_Provinces1">
+            <End Role="Province" EntitySet="Provinces" />
+            <End Role="MemberAddress" EntitySet="MemberAddresses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MemberDependents_Membership" Association="Portal_DBModel.FK_MemberDependents_Membership">
+            <End Role="Membership" EntitySet="Memberships" />
+            <End Role="MemberDependent" EntitySet="MemberDependents" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MemberFamilies_Membership" Association="Portal_DBModel.FK_MemberFamilies_Membership">
+            <End Role="Membership" EntitySet="Memberships" />
+            <End Role="MemberFamily" EntitySet="MemberFamilies" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MembershipPayments_Membership" Association="Portal_DBModel.FK_MembershipPayments_Membership">
+            <End Role="Membership" EntitySet="Memberships" />
+            <End Role="MembershipPayment" EntitySet="MembershipPayments" />
+          </AssociationSet>
+          <EntitySet Name="LoanLedgers" EntityType="Portal_DBModel.LoanLedger" />
+          <AssociationSet Name="FK_LoanLedger_LoanAccount" Association="Portal_DBModel.FK_LoanLedger_LoanAccount">
+            <End Role="LoanAccount" EntitySet="LoanAccounts" />
+            <End Role="LoanLedger" EntitySet="LoanLedgers" />
+          </AssociationSet>
+          </EntityContainer>
+        <EntityType Name="Barangay">
+          <Key>
+            <PropertyRef Name="brgyCode" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="citymunCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="brgyCode" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="MemberAddresses" Relationship="Portal_DBModel.FK_MemberAddress_Barangay" FromRole="Barangay" ToRole="MemberAddress" />
+        </EntityType>
+        <EntityType Name="CityMunicipality">
+          <Key>
+            <PropertyRef Name="citymunCode" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="psgcCode" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="provCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="citymunCode" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="MemberAddresses" Relationship="Portal_DBModel.FK_MemberAddress_CityMunicipalities" FromRole="CityMunicipality" ToRole="MemberAddress" />
+        </EntityType>
+        <EntityType Name="LoanApplication">
+          <Key>
+            <PropertyRef Name="LAno" />
+          </Key>
+          <Property Name="LAno" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MemberCode" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="AppliedAmount" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="LoanAmount" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="ApplicationDate" Type="DateTime" Precision="3" />
+          <Property Name="Product" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="TermsQty" Type="Int32" />
+          <Property Name="ApplicationFormPath" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="File1Path" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="File2Path" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="File3Path" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="File4Path" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="File5Path" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="VerificationStatus" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="VerificationRemarks" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="DateVerified" Type="DateTime" Precision="3" />
+          <Property Name="EvaluationStatus" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="DateEvaluated" Type="DateTime" Precision="3" />
+          <Property Name="IsChangeLoanAmount" Type="Boolean" />
+          <Property Name="IsChangeTerm" Type="Boolean" />
+          <Property Name="IsAddRequirement" Type="Boolean" />
+          <Property Name="IsAgreeToCondition" Type="Boolean" />
+          <Property Name="ClientEvalRemarks" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="EvaluatorRemarks" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="ApprovalStatus" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="DateApproved" Type="DateTime" Precision="3" />
+          <Property Name="ApproverRemarks" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="AddedReqPath1" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="AddedReqPath2" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="AddedReqPath3" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="ReleaseDate" Type="DateTime" Precision="3" />
+          <Property Name="ReleaseRemarks" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="MembershipPaymentFee">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Amount" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Remarks" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="IsShareCapital" Type="Boolean" />
+          <Property Name="ShareCapitalParameter" Type="Decimal" Precision="18" Scale="2" />
+        </EntityType>
+        <EntityType Name="Province">
+          <Key>
+            <PropertyRef Name="provCode" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="psgcCode" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="regCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="provCode" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="MemberAddresses" Relationship="Portal_DBModel.FK_MemberAddress_Provinces1" FromRole="Province" ToRole="MemberAddress" />
+        </EntityType>
+        <EntityType Name="Region">
+          <Key>
+            <PropertyRef Name="regCode" />
+          </Key>
+          <Property Name="psgcCode" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="shortname" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="regCode" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="CIFOnlineUser">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="CIFkey" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FirstName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="MiddleName" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="Birthdate" Type="DateTime" Precision="3" />
+          <Property Name="Sex" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="EmailAddress" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="ConfirmedEmail" Type="Boolean" />
+          <Property Name="Username" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="BranchCode" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="IsGlobalAdministrator" Type="Boolean" />
+          <Property Name="LastLoginDate" Type="DateTime" Precision="3" />
+          <Property Name="CreationDate" Type="DateTime" Precision="3" />
+          <Property Name="IsOnLine" Type="Boolean" />
+          <Property Name="AccountName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="GUID" Type="Guid" />
+          <Property Name="AccountStatus" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="ActivationCode" Type="Guid" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EmailTagging" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="CasaAccount">
+          <Key>
+            <PropertyRef Name="BranchCode" />
+            <PropertyRef Name="GroupCode" />
+            <PropertyRef Name="AccountNumber" />
+            <PropertyRef Name="CIFkey" />
+          </Key>
+          <Property Name="BranchCode" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="GroupCode" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="AccountNumber" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CIFkey" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="AccountName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="TypeOfAccount" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="AccountStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ProductCode" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="DateOpen" Type="DateTime" Precision="3" />
+          <Property Name="DateClosed" Type="DateTime" Precision="3" />
+          <Property Name="PassbookNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="AccountBalance" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="HoldBalance" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="MaturityDate" Type="DateTime" Precision="3" />
+          <Property Name="Principal" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Terms" Type="Int32" />
+          <Property Name="InterestRate" Type="Double" />
+          <NavigationProperty Name="CasaProduct" Relationship="Portal_DBModel.FK_CasaAccount_CasaProducts" FromRole="CasaAccount" ToRole="CasaProduct" />
+          <Property Name="BeginningBalance" Type="Decimal" Precision="19" Scale="4" />
+        </EntityType>
+        <EntityType Name="CasaLedger">
+          <Key>
+            <PropertyRef Name="BranchCode" />
+            <PropertyRef Name="GroupCode" />
+            <PropertyRef Name="AccountNumber" />
+            <PropertyRef Name="TransactionDate" />
+            <PropertyRef Name="SequenceNumber" />
+          </Key>
+          <Property Name="BranchCode" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="GroupCode" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="AccountNumber" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="TransactionDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="SequenceNumber" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="ReferenceNumber" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Mnemonic" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="BeginningBalance" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Debit" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Credit" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="EndingBalance" Type="Decimal" Precision="19" Scale="4" />
+        </EntityType>
+        <EntityType Name="CasaProduct">
+          <Key>
+            <PropertyRef Name="ProductCode" />
+          </Key>
+          <Property Name="ProductCode" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="TypeOfAccount" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MinimumDeposit" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="MinimumBalance" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="HoldAmount" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Divisor" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="TaxFactor" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="ComputeFrequency" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ServiceChargeActive" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="ServiceChargeDormant" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="DaysDormant" Type="Int32" />
+          <Property Name="Terms" Type="Int32" />
+          <NavigationProperty Name="CasaAccounts" Relationship="Portal_DBModel.FK_CasaAccount_CasaProducts" FromRole="CasaProduct" ToRole="CasaAccount" />
+        </EntityType>
+        <EntityType Name="LoanAccount">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="CIFKey" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="BranchCode" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="GroupCode" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="AccountNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="AccountName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="ProductCode" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="LoanAmount" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="PrincipalBalance" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="InterestBalance" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="ReleaseDate" Type="DateTime" Precision="3" />
+          <Property Name="MaturityDate" Type="DateTime" Precision="3" />
+          <Property Name="AccountStatus" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="ModeOfPayment" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="FrequencyOfPayment" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="NumberOfPayments" Type="Int32" />
+          <Property Name="InterestRate" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="InterestMOP" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="InterestFrequency" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="InterestComputationMethod" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="InterestComputationFrequency" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="LoanProductsMaster" Relationship="Portal_DBModel.FK_LoanAccount_LoanProductsMaster" FromRole="LoanAccount" ToRole="LoanProductsMaster" />
+          <NavigationProperty Name="rptsrc_StatementofAccountLoans" Relationship="Portal_DBModel.FK_rptsrc_StatementofAccountLoans_LoanAccount" FromRole="LoanAccount" ToRole="rptsrc_StatementofAccountLoans" />
+          <NavigationProperty Name="LoanLedgers" Relationship="Portal_DBModel.FK_LoanLedger_LoanAccount" FromRole="LoanAccount" ToRole="LoanLedger" />
+        </EntityType>
+        <EntityType Name="LoanProductsMaster">
+          <Key>
+            <PropertyRef Name="ProductCode" />
+          </Key>
+          <Property Name="ProductId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductCode" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="ProductName" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="ModeOfPayment" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="FrequencyOfPayment" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="NumberOfPayments" Type="Int32" />
+          <Property Name="InterestRate" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="InterestModeofPayment" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="InterestComputationMethod" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="InterestFrequency" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="InterestComputationFrequency" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="AdvancedInterest" Type="Int32" />
+          <NavigationProperty Name="LoanAccounts" Relationship="Portal_DBModel.FK_LoanAccount_LoanProductsMaster" FromRole="LoanProductsMaster" ToRole="LoanAccount" />
+        </EntityType>
+        <EntityType Name="rptsrc_StatementofAccountLoans">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="LoanAccountId" Type="Int32" />
+          <Property Name="TransactionDate" Type="DateTime" Precision="3" />
+          <Property Name="LoanDue" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PrincipalDue" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="InterestDue" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="PenaltyDue" Type="Decimal" Precision="19" Scale="4" />
+          <NavigationProperty Name="LoanAccount" Relationship="Portal_DBModel.FK_rptsrc_StatementofAccountLoans_LoanAccount" FromRole="rptsrc_StatementofAccountLoans" ToRole="LoanAccount" />
+        </EntityType>
+        <Association Name="FK_CasaAccount_CasaProducts">
+          <End Type="Portal_DBModel.CasaProduct" Role="CasaProduct" Multiplicity="0..1" />
+          <End Type="Portal_DBModel.CasaAccount" Role="CasaAccount" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CasaProduct">
+              <PropertyRef Name="ProductCode" />
+            </Principal>
+            <Dependent Role="CasaAccount">
+              <PropertyRef Name="ProductCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LoanAccount_LoanProductsMaster">
+          <End Type="Portal_DBModel.LoanProductsMaster" Role="LoanProductsMaster" Multiplicity="0..1" />
+          <End Type="Portal_DBModel.LoanAccount" Role="LoanAccount" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LoanProductsMaster">
+              <PropertyRef Name="ProductCode" />
+            </Principal>
+            <Dependent Role="LoanAccount">
+              <PropertyRef Name="ProductCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_rptsrc_StatementofAccountLoans_LoanAccount">
+          <End Type="Portal_DBModel.LoanAccount" Role="LoanAccount" Multiplicity="0..1" />
+          <End Type="Portal_DBModel.rptsrc_StatementofAccountLoans" Role="rptsrc_StatementofAccountLoans" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LoanAccount">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="rptsrc_StatementofAccountLoans">
+              <PropertyRef Name="LoanAccountId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="rptsrc_StatementofAccountSavings">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BranchCode" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="GroupCode" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="AccountNumber" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="AccountType" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="TransactionDate" Type="DateTime" Precision="3" />
+          <Property Name="BeginningBalance" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="CashDeposits" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="CheckDeposits" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="CreditMemo" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Interest" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="LoanDeduction" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="SavingsCollection" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="CashWithdrawal" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="CheckWithdrawal" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="DebitMemo" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="ChargeBelowMinBal" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="ChargeonDormancy" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="LoanOffsetting" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="EndingBalance" Type="Decimal" Precision="19" Scale="4" />
+        </EntityType>
+        <EntityType Name="MemberAddress">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MembershipID" Type="Int32" Nullable="false" />
+          <Property Name="ProvCode" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CityMunCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="BrgyCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Zipcode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="BuildingName" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="Street" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="IsOwned" Type="Boolean" />
+          <Property Name="IsRent" Type="Boolean" />
+          <Property Name="NumberofRentYear" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="IsLivingwParent" Type="Boolean" />
+          <Property Name="IsOther" Type="Boolean" />
+          <Property Name="Other" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="AddressType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Barangay" Relationship="Portal_DBModel.FK_MemberAddress_Barangay" FromRole="MemberAddress" ToRole="Barangay" />
+          <NavigationProperty Name="CityMunicipality" Relationship="Portal_DBModel.FK_MemberAddress_CityMunicipalities" FromRole="MemberAddress" ToRole="CityMunicipality" />
+          <NavigationProperty Name="Membership" Relationship="Portal_DBModel.FK_MemberAddress_Membership" FromRole="MemberAddress" ToRole="Membership" />
+          <NavigationProperty Name="Province" Relationship="Portal_DBModel.FK_MemberAddress_Provinces1" FromRole="MemberAddress" ToRole="Province" />
+        </EntityType>
+        <EntityType Name="MemberDependent">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MembershipID" Type="Int32" />
+          <Property Name="Name" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="BirthDate" Type="DateTime" Precision="0" />
+          <Property Name="EducAttainment" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Membership" Relationship="Portal_DBModel.FK_MemberDependents_Membership" FromRole="MemberDependent" ToRole="Membership" />
+        </EntityType>
+        <EntityType Name="MemberFamily">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MembershipID" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="BirthDate" Type="DateTime" Precision="0" />
+          <Property Name="ContactNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Address" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Relationship" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Membership" Relationship="Portal_DBModel.FK_MemberFamilies_Membership" FromRole="MemberFamily" ToRole="Membership" />
+        </EntityType>
+        <EntityType Name="Membership">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LastName" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="MiddleName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="BirthDate" Type="DateTime" Precision="0" />
+          <Property Name="BirthPlace" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Gender" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Citizenship" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CivilStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Religion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="EducAttainment" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Degree" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="ContactNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="EmailAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Occupation" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Height" Type="Decimal" Precision="18" Scale="3" />
+          <Property Name="Weight" Type="Decimal" Precision="18" Scale="3" />
+          <Property Name="TIN" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SSS" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="EmergencyContactPerson" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="EmergencyContactNo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="ApplicationStage" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ApplicationStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PMESDate" Type="DateTime" Precision="0" />
+          <Property Name="PMESType" Type="Boolean" />
+          <Property Name="Remarks" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="ApplicationName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ApplicationContent" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="MemberIDPictureName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="MemberIDPictureContent" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="MemberValidIdName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="MemberValidIdContent" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="PaymentName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="PaymentContent" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="IsExists" Type="Boolean" />
+          <NavigationProperty Name="MemberAddresses" Relationship="Portal_DBModel.FK_MemberAddress_Membership" FromRole="Membership" ToRole="MemberAddress" />
+          <NavigationProperty Name="MemberDependents" Relationship="Portal_DBModel.FK_MemberDependents_Membership" FromRole="Membership" ToRole="MemberDependent" />
+          <NavigationProperty Name="MemberFamilies" Relationship="Portal_DBModel.FK_MemberFamilies_Membership" FromRole="Membership" ToRole="MemberFamily" />
+          <NavigationProperty Name="MembershipPayments" Relationship="Portal_DBModel.FK_MembershipPayments_Membership" FromRole="Membership" ToRole="MembershipPayment" />
+          <Property Name="ApplicationDate" Type="DateTime" Precision="0" />
+          <Property Name="ApplicationContentType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MemberIDPictureContentType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MemberValidIdContentType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PaymentContentType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="MembershipPayment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MembershipID" Type="Int32" />
+          <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Amount" Type="Decimal" Precision="18" Scale="2" />
+          <NavigationProperty Name="Membership" Relationship="Portal_DBModel.FK_MembershipPayments_Membership" FromRole="MembershipPayment" ToRole="Membership" />
+          <Property Name="IsShareCapital" Type="Boolean" />
+          <Property Name="ShareCapitalParameter" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Remarks" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <Association Name="FK_MemberAddress_Barangay">
+          <End Type="Portal_DBModel.Barangay" Role="Barangay" Multiplicity="0..1" />
+          <End Type="Portal_DBModel.MemberAddress" Role="MemberAddress" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Barangay">
+              <PropertyRef Name="brgyCode" />
+            </Principal>
+            <Dependent Role="MemberAddress">
+              <PropertyRef Name="BrgyCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MemberAddress_CityMunicipalities">
+          <End Type="Portal_DBModel.CityMunicipality" Role="CityMunicipality" Multiplicity="0..1" />
+          <End Type="Portal_DBModel.MemberAddress" Role="MemberAddress" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CityMunicipality">
+              <PropertyRef Name="citymunCode" />
+            </Principal>
+            <Dependent Role="MemberAddress">
+              <PropertyRef Name="CityMunCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MemberAddress_Membership">
+          <End Type="Portal_DBModel.Membership" Role="Membership" Multiplicity="1" />
+          <End Type="Portal_DBModel.MemberAddress" Role="MemberAddress" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Membership">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MemberAddress">
+              <PropertyRef Name="MembershipID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MemberAddress_Provinces1">
+          <End Type="Portal_DBModel.Province" Role="Province" Multiplicity="1" />
+          <End Type="Portal_DBModel.MemberAddress" Role="MemberAddress" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Province">
+              <PropertyRef Name="provCode" />
+            </Principal>
+            <Dependent Role="MemberAddress">
+              <PropertyRef Name="ProvCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MemberDependents_Membership">
+          <End Type="Portal_DBModel.Membership" Role="Membership" Multiplicity="0..1" />
+          <End Type="Portal_DBModel.MemberDependent" Role="MemberDependent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Membership">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MemberDependent">
+              <PropertyRef Name="MembershipID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MemberFamilies_Membership">
+          <End Type="Portal_DBModel.Membership" Role="Membership" Multiplicity="1" />
+          <End Type="Portal_DBModel.MemberFamily" Role="MemberFamily" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Membership">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MemberFamily">
+              <PropertyRef Name="MembershipID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MembershipPayments_Membership">
+          <End Type="Portal_DBModel.Membership" Role="Membership" Multiplicity="0..1" />
+          <End Type="Portal_DBModel.MembershipPayment" Role="MembershipPayment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Membership">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MembershipPayment">
+              <PropertyRef Name="MembershipID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="LoanLedger">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="LoanAccountId" Type="Int32" />
+          <Property Name="TransactionDate" Type="DateTime" Precision="3" />
+          <Property Name="ReferenceNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TransactionType" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="PrincipalBeginning" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Principal" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="PrincipalEnding" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="InterestBeginning" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Interest" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="InterestEnding" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Penalty" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="LoanAccount" Relationship="Portal_DBModel.FK_LoanLedger_LoanAccount" FromRole="LoanLedger" ToRole="LoanAccount" />
+        </EntityType>
+        <Association Name="FK_LoanLedger_LoanAccount">
+          <End Type="Portal_DBModel.LoanAccount" Role="LoanAccount" Multiplicity="0..1" />
+          <End Type="Portal_DBModel.LoanLedger" Role="LoanLedger" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LoanAccount">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="LoanLedger">
+              <PropertyRef Name="LoanAccountId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Portal_DBModelStoreContainer" CdmEntityContainer="Portal_DBEntities">
+          <EntitySetMapping Name="Barangays">
+            <EntityTypeMapping TypeName="Portal_DBModel.Barangay">
+              <MappingFragment StoreEntitySet="Barangay">
+                <ScalarProperty Name="brgyCode" ColumnName="brgyCode" />
+                <ScalarProperty Name="citymunCode" ColumnName="citymunCode" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CityMunicipalities">
+            <EntityTypeMapping TypeName="Portal_DBModel.CityMunicipality">
+              <MappingFragment StoreEntitySet="CityMunicipalities">
+                <ScalarProperty Name="citymunCode" ColumnName="citymunCode" />
+                <ScalarProperty Name="provCode" ColumnName="provCode" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="psgcCode" ColumnName="psgcCode" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LoanApplications">
+            <EntityTypeMapping TypeName="Portal_DBModel.LoanApplication">
+              <MappingFragment StoreEntitySet="LoanApplication">
+                <ScalarProperty Name="ReleaseRemarks" ColumnName="ReleaseRemarks" />
+                <ScalarProperty Name="ReleaseDate" ColumnName="ReleaseDate" />
+                <ScalarProperty Name="AddedReqPath3" ColumnName="AddedReqPath3" />
+                <ScalarProperty Name="AddedReqPath2" ColumnName="AddedReqPath2" />
+                <ScalarProperty Name="AddedReqPath1" ColumnName="AddedReqPath1" />
+                <ScalarProperty Name="ApproverRemarks" ColumnName="ApproverRemarks" />
+                <ScalarProperty Name="DateApproved" ColumnName="DateApproved" />
+                <ScalarProperty Name="ApprovalStatus" ColumnName="ApprovalStatus" />
+                <ScalarProperty Name="EvaluatorRemarks" ColumnName="EvaluatorRemarks" />
+                <ScalarProperty Name="ClientEvalRemarks" ColumnName="ClientEvalRemarks" />
+                <ScalarProperty Name="IsAgreeToCondition" ColumnName="IsAgreeToCondition" />
+                <ScalarProperty Name="IsAddRequirement" ColumnName="IsAddRequirement" />
+                <ScalarProperty Name="IsChangeTerm" ColumnName="IsChangeTerm" />
+                <ScalarProperty Name="IsChangeLoanAmount" ColumnName="IsChangeLoanAmount" />
+                <ScalarProperty Name="DateEvaluated" ColumnName="DateEvaluated" />
+                <ScalarProperty Name="EvaluationStatus" ColumnName="EvaluationStatus" />
+                <ScalarProperty Name="DateVerified" ColumnName="DateVerified" />
+                <ScalarProperty Name="VerificationRemarks" ColumnName="VerificationRemarks" />
+                <ScalarProperty Name="VerificationStatus" ColumnName="VerificationStatus" />
+                <ScalarProperty Name="File5Path" ColumnName="File5Path" />
+                <ScalarProperty Name="File4Path" ColumnName="File4Path" />
+                <ScalarProperty Name="File3Path" ColumnName="File3Path" />
+                <ScalarProperty Name="File2Path" ColumnName="File2Path" />
+                <ScalarProperty Name="File1Path" ColumnName="File1Path" />
+                <ScalarProperty Name="ApplicationFormPath" ColumnName="ApplicationFormPath" />
+                <ScalarProperty Name="TermsQty" ColumnName="TermsQty" />
+                <ScalarProperty Name="Product" ColumnName="Product" />
+                <ScalarProperty Name="ApplicationDate" ColumnName="ApplicationDate" />
+                <ScalarProperty Name="LoanAmount" ColumnName="LoanAmount" />
+                <ScalarProperty Name="AppliedAmount" ColumnName="AppliedAmount" />
+                <ScalarProperty Name="MemberCode" ColumnName="MemberCode" />
+                <ScalarProperty Name="LAno" ColumnName="LAno" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MembershipPaymentFees">
+            <EntityTypeMapping TypeName="Portal_DBModel.MembershipPaymentFee">
+              <MappingFragment StoreEntitySet="MembershipPaymentFee">
+                <ScalarProperty Name="ShareCapitalParameter" ColumnName="ShareCapitalParameter" />
+                <ScalarProperty Name="IsShareCapital" ColumnName="IsShareCapital" />
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Provinces">
+            <EntityTypeMapping TypeName="Portal_DBModel.Province">
+              <MappingFragment StoreEntitySet="Provinces">
+                <ScalarProperty Name="provCode" ColumnName="provCode" />
+                <ScalarProperty Name="regCode" ColumnName="regCode" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="psgcCode" ColumnName="psgcCode" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Regions">
+            <EntityTypeMapping TypeName="Portal_DBModel.Region">
+              <MappingFragment StoreEntitySet="Regions">
+                <ScalarProperty Name="regCode" ColumnName="regCode" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="shortname" ColumnName="shortname" />
+                <ScalarProperty Name="psgcCode" ColumnName="psgcCode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CIFOnlineUsers">
+            <EntityTypeMapping TypeName="Portal_DBModel.CIFOnlineUser">
+              <MappingFragment StoreEntitySet="CIFOnlineUsers">
+                <ScalarProperty Name="EmailTagging" ColumnName="EmailTagging" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ActivationCode" ColumnName="ActivationCode" />
+                <ScalarProperty Name="AccountStatus" ColumnName="AccountStatus" />
+                <ScalarProperty Name="GUID" ColumnName="GUID" />
+                <ScalarProperty Name="AccountName" ColumnName="AccountName" />
+                <ScalarProperty Name="IsOnLine" ColumnName="IsOnLine" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="LastLoginDate" ColumnName="LastLoginDate" />
+                <ScalarProperty Name="IsGlobalAdministrator" ColumnName="IsGlobalAdministrator" />
+                <ScalarProperty Name="BranchCode" ColumnName="BranchCode" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="ConfirmedEmail" ColumnName="ConfirmedEmail" />
+                <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
+                <ScalarProperty Name="Sex" ColumnName="Sex" />
+                <ScalarProperty Name="Birthdate" ColumnName="Birthdate" />
+                <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="CIFkey" ColumnName="CIFkey" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CasaAccounts">
+            <EntityTypeMapping TypeName="Portal_DBModel.CasaAccount">
+              <MappingFragment StoreEntitySet="CasaAccount">
+                <ScalarProperty Name="BeginningBalance" ColumnName="BeginningBalance" />
+                <ScalarProperty Name="InterestRate" ColumnName="InterestRate" />
+                <ScalarProperty Name="Terms" ColumnName="Terms" />
+                <ScalarProperty Name="Principal" ColumnName="Principal" />
+                <ScalarProperty Name="MaturityDate" ColumnName="MaturityDate" />
+                <ScalarProperty Name="HoldBalance" ColumnName="HoldBalance" />
+                <ScalarProperty Name="AccountBalance" ColumnName="AccountBalance" />
+                <ScalarProperty Name="PassbookNumber" ColumnName="PassbookNumber" />
+                <ScalarProperty Name="DateClosed" ColumnName="DateClosed" />
+                <ScalarProperty Name="DateOpen" ColumnName="DateOpen" />
+                <ScalarProperty Name="ProductCode" ColumnName="ProductCode" />
+                <ScalarProperty Name="AccountStatus" ColumnName="AccountStatus" />
+                <ScalarProperty Name="TypeOfAccount" ColumnName="TypeOfAccount" />
+                <ScalarProperty Name="AccountName" ColumnName="AccountName" />
+                <ScalarProperty Name="CIFkey" ColumnName="CIFkey" />
+                <ScalarProperty Name="AccountNumber" ColumnName="AccountNumber" />
+                <ScalarProperty Name="GroupCode" ColumnName="GroupCode" />
+                <ScalarProperty Name="BranchCode" ColumnName="BranchCode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CasaLedgers">
+            <EntityTypeMapping TypeName="Portal_DBModel.CasaLedger">
+              <MappingFragment StoreEntitySet="CasaLedger">
+                <ScalarProperty Name="EndingBalance" ColumnName="EndingBalance" />
+                <ScalarProperty Name="Credit" ColumnName="Credit" />
+                <ScalarProperty Name="Debit" ColumnName="Debit" />
+                <ScalarProperty Name="BeginningBalance" ColumnName="BeginningBalance" />
+                <ScalarProperty Name="Mnemonic" ColumnName="Mnemonic" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="ReferenceNumber" ColumnName="ReferenceNumber" />
+                <ScalarProperty Name="SequenceNumber" ColumnName="SequenceNumber" />
+                <ScalarProperty Name="TransactionDate" ColumnName="TransactionDate" />
+                <ScalarProperty Name="AccountNumber" ColumnName="AccountNumber" />
+                <ScalarProperty Name="GroupCode" ColumnName="GroupCode" />
+                <ScalarProperty Name="BranchCode" ColumnName="BranchCode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CasaProducts">
+            <EntityTypeMapping TypeName="Portal_DBModel.CasaProduct">
+              <MappingFragment StoreEntitySet="CasaProducts">
+                <ScalarProperty Name="Terms" ColumnName="Terms" />
+                <ScalarProperty Name="DaysDormant" ColumnName="DaysDormant" />
+                <ScalarProperty Name="ServiceChargeDormant" ColumnName="ServiceChargeDormant" />
+                <ScalarProperty Name="ServiceChargeActive" ColumnName="ServiceChargeActive" />
+                <ScalarProperty Name="ComputeFrequency" ColumnName="ComputeFrequency" />
+                <ScalarProperty Name="TaxFactor" ColumnName="TaxFactor" />
+                <ScalarProperty Name="Divisor" ColumnName="Divisor" />
+                <ScalarProperty Name="HoldAmount" ColumnName="HoldAmount" />
+                <ScalarProperty Name="MinimumBalance" ColumnName="MinimumBalance" />
+                <ScalarProperty Name="MinimumDeposit" ColumnName="MinimumDeposit" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="TypeOfAccount" ColumnName="TypeOfAccount" />
+                <ScalarProperty Name="ProductCode" ColumnName="ProductCode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LoanAccounts">
+            <EntityTypeMapping TypeName="Portal_DBModel.LoanAccount">
+              <MappingFragment StoreEntitySet="LoanAccount">
+                <ScalarProperty Name="InterestComputationFrequency" ColumnName="InterestComputationFrequency" />
+                <ScalarProperty Name="InterestComputationMethod" ColumnName="InterestComputationMethod" />
+                <ScalarProperty Name="InterestFrequency" ColumnName="InterestFrequency" />
+                <ScalarProperty Name="InterestMOP" ColumnName="InterestMOP" />
+                <ScalarProperty Name="InterestRate" ColumnName="InterestRate" />
+                <ScalarProperty Name="NumberOfPayments" ColumnName="NumberOfPayments" />
+                <ScalarProperty Name="FrequencyOfPayment" ColumnName="FrequencyOfPayment" />
+                <ScalarProperty Name="ModeOfPayment" ColumnName="ModeOfPayment" />
+                <ScalarProperty Name="AccountStatus" ColumnName="AccountStatus" />
+                <ScalarProperty Name="MaturityDate" ColumnName="MaturityDate" />
+                <ScalarProperty Name="ReleaseDate" ColumnName="ReleaseDate" />
+                <ScalarProperty Name="InterestBalance" ColumnName="InterestBalance" />
+                <ScalarProperty Name="PrincipalBalance" ColumnName="PrincipalBalance" />
+                <ScalarProperty Name="LoanAmount" ColumnName="LoanAmount" />
+                <ScalarProperty Name="ProductCode" ColumnName="ProductCode" />
+                <ScalarProperty Name="AccountName" ColumnName="AccountName" />
+                <ScalarProperty Name="AccountNumber" ColumnName="AccountNumber" />
+                <ScalarProperty Name="GroupCode" ColumnName="GroupCode" />
+                <ScalarProperty Name="BranchCode" ColumnName="BranchCode" />
+                <ScalarProperty Name="CIFKey" ColumnName="CIFKey" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LoanProductsMasters">
+            <EntityTypeMapping TypeName="Portal_DBModel.LoanProductsMaster">
+              <MappingFragment StoreEntitySet="LoanProductsMaster">
+                <ScalarProperty Name="AdvancedInterest" ColumnName="AdvancedInterest" />
+                <ScalarProperty Name="InterestComputationFrequency" ColumnName="InterestComputationFrequency" />
+                <ScalarProperty Name="InterestFrequency" ColumnName="InterestFrequency" />
+                <ScalarProperty Name="InterestComputationMethod" ColumnName="InterestComputationMethod" />
+                <ScalarProperty Name="InterestModeofPayment" ColumnName="InterestModeofPayment" />
+                <ScalarProperty Name="InterestRate" ColumnName="InterestRate" />
+                <ScalarProperty Name="NumberOfPayments" ColumnName="NumberOfPayments" />
+                <ScalarProperty Name="FrequencyOfPayment" ColumnName="FrequencyOfPayment" />
+                <ScalarProperty Name="ModeOfPayment" ColumnName="ModeOfPayment" />
+                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+                <ScalarProperty Name="ProductCode" ColumnName="ProductCode" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="rptsrc_StatementofAccountLoans">
+            <EntityTypeMapping TypeName="Portal_DBModel.rptsrc_StatementofAccountLoans">
+              <MappingFragment StoreEntitySet="rptsrc_StatementofAccountLoans">
+                <ScalarProperty Name="PenaltyDue" ColumnName="PenaltyDue" />
+                <ScalarProperty Name="InterestDue" ColumnName="InterestDue" />
+                <ScalarProperty Name="PrincipalDue" ColumnName="PrincipalDue" />
+                <ScalarProperty Name="LoanDue" ColumnName="LoanDue" />
+                <ScalarProperty Name="TransactionDate" ColumnName="TransactionDate" />
+                <ScalarProperty Name="LoanAccountId" ColumnName="LoanAccountId" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="rptsrc_StatementofAccountSavings">
+            <EntityTypeMapping TypeName="Portal_DBModel.rptsrc_StatementofAccountSavings">
+              <MappingFragment StoreEntitySet="rptsrc_StatementofAccountSavings">
+                <ScalarProperty Name="EndingBalance" ColumnName="EndingBalance" />
+                <ScalarProperty Name="LoanOffsetting" ColumnName="LoanOffsetting" />
+                <ScalarProperty Name="ChargeonDormancy" ColumnName="ChargeonDormancy" />
+                <ScalarProperty Name="ChargeBelowMinBal" ColumnName="ChargeBelowMinBal" />
+                <ScalarProperty Name="DebitMemo" ColumnName="DebitMemo" />
+                <ScalarProperty Name="CheckWithdrawal" ColumnName="CheckWithdrawal" />
+                <ScalarProperty Name="CashWithdrawal" ColumnName="CashWithdrawal" />
+                <ScalarProperty Name="SavingsCollection" ColumnName="SavingsCollection" />
+                <ScalarProperty Name="LoanDeduction" ColumnName="LoanDeduction" />
+                <ScalarProperty Name="Interest" ColumnName="Interest" />
+                <ScalarProperty Name="CreditMemo" ColumnName="CreditMemo" />
+                <ScalarProperty Name="CheckDeposits" ColumnName="CheckDeposits" />
+                <ScalarProperty Name="CashDeposits" ColumnName="CashDeposits" />
+                <ScalarProperty Name="BeginningBalance" ColumnName="BeginningBalance" />
+                <ScalarProperty Name="TransactionDate" ColumnName="TransactionDate" />
+                <ScalarProperty Name="AccountType" ColumnName="AccountType" />
+                <ScalarProperty Name="AccountNumber" ColumnName="AccountNumber" />
+                <ScalarProperty Name="GroupCode" ColumnName="GroupCode" />
+                <ScalarProperty Name="BranchCode" ColumnName="BranchCode" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MemberAddresses">
+            <EntityTypeMapping TypeName="Portal_DBModel.MemberAddress">
+              <MappingFragment StoreEntitySet="MemberAddress">
+                <ScalarProperty Name="AddressType" ColumnName="AddressType" />
+                <ScalarProperty Name="Other" ColumnName="Other" />
+                <ScalarProperty Name="IsOther" ColumnName="IsOther" />
+                <ScalarProperty Name="IsLivingwParent" ColumnName="IsLivingwParent" />
+                <ScalarProperty Name="NumberofRentYear" ColumnName="NumberofRentYear" />
+                <ScalarProperty Name="IsRent" ColumnName="IsRent" />
+                <ScalarProperty Name="IsOwned" ColumnName="IsOwned" />
+                <ScalarProperty Name="Street" ColumnName="Street" />
+                <ScalarProperty Name="BuildingName" ColumnName="BuildingName" />
+                <ScalarProperty Name="Zipcode" ColumnName="Zipcode" />
+                <ScalarProperty Name="BrgyCode" ColumnName="BrgyCode" />
+                <ScalarProperty Name="CityMunCode" ColumnName="CityMunCode" />
+                <ScalarProperty Name="ProvCode" ColumnName="ProvCode" />
+                <ScalarProperty Name="MembershipID" ColumnName="MembershipID" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MemberDependents">
+            <EntityTypeMapping TypeName="Portal_DBModel.MemberDependent">
+              <MappingFragment StoreEntitySet="MemberDependents">
+                <ScalarProperty Name="EducAttainment" ColumnName="EducAttainment" />
+                <ScalarProperty Name="BirthDate" ColumnName="BirthDate" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="MembershipID" ColumnName="MembershipID" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MemberFamilies">
+            <EntityTypeMapping TypeName="Portal_DBModel.MemberFamily">
+              <MappingFragment StoreEntitySet="MemberFamilies">
+                <ScalarProperty Name="Relationship" ColumnName="Relationship" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="ContactNumber" ColumnName="ContactNumber" />
+                <ScalarProperty Name="BirthDate" ColumnName="BirthDate" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="MembershipID" ColumnName="MembershipID" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Memberships">
+            <EntityTypeMapping TypeName="Portal_DBModel.Membership">
+              <MappingFragment StoreEntitySet="Membership">
+                <ScalarProperty Name="PaymentContentType" ColumnName="PaymentContentType" />
+                <ScalarProperty Name="MemberValidIdContentType" ColumnName="MemberValidIdContentType" />
+                <ScalarProperty Name="MemberIDPictureContentType" ColumnName="MemberIDPictureContentType" />
+                <ScalarProperty Name="ApplicationContentType" ColumnName="ApplicationContentType" />
+                <ScalarProperty Name="ApplicationDate" ColumnName="ApplicationDate" />
+                <ScalarProperty Name="IsExists" ColumnName="IsExists" />
+                <ScalarProperty Name="PaymentContent" ColumnName="PaymentContent" />
+                <ScalarProperty Name="PaymentName" ColumnName="PaymentName" />
+                <ScalarProperty Name="MemberValidIdContent" ColumnName="MemberValidIdContent" />
+                <ScalarProperty Name="MemberValidIdName" ColumnName="MemberValidIdName" />
+                <ScalarProperty Name="MemberIDPictureContent" ColumnName="MemberIDPictureContent" />
+                <ScalarProperty Name="MemberIDPictureName" ColumnName="MemberIDPictureName" />
+                <ScalarProperty Name="ApplicationContent" ColumnName="ApplicationContent" />
+                <ScalarProperty Name="ApplicationName" ColumnName="ApplicationName" />
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+                <ScalarProperty Name="PMESType" ColumnName="PMESType" />
+                <ScalarProperty Name="PMESDate" ColumnName="PMESDate" />
+                <ScalarProperty Name="ApplicationStatus" ColumnName="ApplicationStatus" />
+                <ScalarProperty Name="ApplicationStage" ColumnName="ApplicationStage" />
+                <ScalarProperty Name="EmergencyContactNo" ColumnName="EmergencyContactNo" />
+                <ScalarProperty Name="EmergencyContactPerson" ColumnName="EmergencyContactPerson" />
+                <ScalarProperty Name="SSS" ColumnName="SSS" />
+                <ScalarProperty Name="TIN" ColumnName="TIN" />
+                <ScalarProperty Name="Weight" ColumnName="Weight" />
+                <ScalarProperty Name="Height" ColumnName="Height" />
+                <ScalarProperty Name="Occupation" ColumnName="Occupation" />
+                <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
+                <ScalarProperty Name="ContactNumber" ColumnName="ContactNumber" />
+                <ScalarProperty Name="Degree" ColumnName="Degree" />
+                <ScalarProperty Name="EducAttainment" ColumnName="EducAttainment" />
+                <ScalarProperty Name="Religion" ColumnName="Religion" />
+                <ScalarProperty Name="CivilStatus" ColumnName="CivilStatus" />
+                <ScalarProperty Name="Citizenship" ColumnName="Citizenship" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="BirthPlace" ColumnName="BirthPlace" />
+                <ScalarProperty Name="BirthDate" ColumnName="BirthDate" />
+                <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MembershipPayments">
+            <EntityTypeMapping TypeName="Portal_DBModel.MembershipPayment">
+              <MappingFragment StoreEntitySet="MembershipPayments">
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+                <ScalarProperty Name="ShareCapitalParameter" ColumnName="ShareCapitalParameter" />
+                <ScalarProperty Name="IsShareCapital" ColumnName="IsShareCapital" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="MembershipID" ColumnName="MembershipID" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LoanLedgers">
+            <EntityTypeMapping TypeName="Portal_DBModel.LoanLedger">
+              <MappingFragment StoreEntitySet="LoanLedger">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Penalty" ColumnName="Penalty" />
+                <ScalarProperty Name="InterestEnding" ColumnName="InterestEnding" />
+                <ScalarProperty Name="Interest" ColumnName="Interest" />
+                <ScalarProperty Name="InterestBeginning" ColumnName="InterestBeginning" />
+                <ScalarProperty Name="PrincipalEnding" ColumnName="PrincipalEnding" />
+                <ScalarProperty Name="Principal" ColumnName="Principal" />
+                <ScalarProperty Name="PrincipalBeginning" ColumnName="PrincipalBeginning" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="TransactionType" ColumnName="TransactionType" />
+                <ScalarProperty Name="ReferenceNumber" ColumnName="ReferenceNumber" />
+                <ScalarProperty Name="TransactionDate" ColumnName="TransactionDate" />
+                <ScalarProperty Name="LoanAccountId" ColumnName="LoanAccountId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
